@@ -1,0 +1,54 @@
+int InputNat()
+{
+    bool vvod = false;
+    int x=0;
+    while(vvod==false)
+        {
+            Console.Write("Введите размерность массива: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            if(x>0) vvod=true;
+            else Console.WriteLine("Это число не является натуральным. Попробуйте еще раз.");
+        }
+    return x;
+}
+void VvodArray(string[] arr)
+{
+    for (int i=0;i < arr.GetLength(0); i++)
+    {
+        Console.Write("Введите "+(i+1)+"-й элемент массива: ");
+        arr[i]=Console.ReadLine();
+    }
+}
+void PrintArray(string[] arr)
+{
+    for (int i=0;i < arr.GetLength(0); i++)
+        Console.Write(arr[i]+" ");
+    Console.WriteLine();
+}
+int CountArray(string[] arr)
+{
+    int x=0;
+    for (int i=0;i < arr.GetLength(0); i++)
+        if(arr[i].Length<4) x++;
+    return x;
+}
+string[] CreateNewArray(string[] arr, int m)
+{
+    string[] ar=new string[m];
+    int j=0;
+    for (int i=0;i < arr.GetLength(0); i++)
+        if(arr[i].Length<4)
+        {
+            ar[j]=arr[i];
+            j++;
+        }
+    return ar;
+}
+int numberN = InputNat();
+string[] massiv1 = new string[numberN];
+VvodArray(massiv1);
+int numberM=CountArray(massiv1);
+string[] massiv2 = new string[numberM];
+massiv2=CreateNewArray(massiv1,numberM);
+Console.Write("Новый массив: ");
+PrintArray(massiv2);
